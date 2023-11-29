@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/07 15:40:59 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/25 09:38:17 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	void	*ptr;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
-	{
-		count_return += ft_putchar('-');
-		nb = -nb;
-	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	if (size > 0 && count >= SIZE_MAX / size)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (ptr);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

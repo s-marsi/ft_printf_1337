@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/06 08:46:24 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/16 12:36:31 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	size_t	i;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	i = 0;
+	while (i++ < len)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		*((unsigned char *) b) = c;
+		b++;
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (b - len);
 }

@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/15 12:01:41 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/19 12:58:13 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	t_list	*head;
+	t_list	*new;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	head = NULL;
+	if (!lst)
+		return (NULL);
+	if (f && del)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		while (lst)
+		{
+			new = ft_lstnew(f(lst->content));
+			if (!new)
+			{
+				ft_lstclear(&head, del);
+				return (NULL);
+			}
+			ft_lstadd_back(&head, new);
+			lst = lst->next;
+		}
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (head);
 }

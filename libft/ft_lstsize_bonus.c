@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/14 14:46:25 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/14 17:38:14 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+int	ft_lstsize(t_list *lst)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	int	count;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	if (!lst)
+		return (0);
+	count = 0;
+	while (lst)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		count++;
+		lst = lst->next;
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (count);
 }

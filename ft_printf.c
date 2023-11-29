@@ -6,11 +6,13 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:28:13 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 16:07:22 by smarsi           ###   ########.fr       */
+/*   Updated: 2023/11/29 20:33:43 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+
 
 int	static	check_arg(const char *str, va_list ap)
 {
@@ -46,8 +48,10 @@ int	ft_printf(const char *str, ...)
 	va_list	ap;
 	int		i;
 	int		count_return;	
-
+	int		margin;
+	
 	i = 0;
+	margin = 0;
 	count_return = 0;
 	va_start(ap, str);
 	while (str[i])
@@ -55,9 +59,24 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%' && (str[i + 1] == '%'))
 			count_return += write(1, str + ++i, 1);
 		else if (str[i] == '%')
-			count_return += check_arg(str + ++i, ap);
+		{
+			i++;
+			if (str[i] == '-')
+			{
+				i++;
+				i += ft_margin(str + i, &margin);
+			}
+			count_return += check_arg(str + i++, ap);
+		}
 		else
+		{
 			count_return += write(1, str + i, 1);
+		}
+		while (margin)
+		{
+			count_return += write(1, " ", 1);
+			margin--;
+		}
 		i++;
 	}
 	va_end(ap);

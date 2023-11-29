@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/02 19:32:59 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/04 13:24:28 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	size_t	len_src;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	len_src = ft_strlen(src);
+	if (dstsize > 0)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		while (*src && dstsize-- > 1)
+			*dst++ = *src++;
+		*dst = '\0';
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (len_src);
 }

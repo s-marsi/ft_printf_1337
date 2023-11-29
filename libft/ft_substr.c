@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/07 21:08:07 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/16 12:39:03 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	char	*sub;
+	size_t	i;
+	size_t	len2;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	len2 = ft_strlen(s + start);
+	if (len > len2)
+		len = len2;
+	sub = ft_calloc(len + 1, 1);
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		sub[i++] = s[start];
+		start++;
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (sub);
 }

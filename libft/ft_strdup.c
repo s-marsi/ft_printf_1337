@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/07 15:57:17 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/16 20:52:44 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_strdup(const char *s1)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	char	*s1_dup;
+	int		len;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
-	{
-		count_return += ft_putchar('-');
-		nb = -nb;
-	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	len = ft_strlen(s1);
+	s1_dup = ft_calloc(len + 1, sizeof(char));
+	if (!s1_dup)
+		return (NULL);
+	ft_strlcpy(s1_dup, s1, len + 1);
+	return (s1_dup);
 }
