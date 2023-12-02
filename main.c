@@ -1,12 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/30 12:40:41 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/02 12:37:43 by smarsi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int main()
+int	main(void)
 {
-	// int a;
-	// printf("\ncount :  %d",ft_printf("%% hello %c %s %d %i %u %X %x %p", 'A', "SOUFYANE", INT_MIN, INT_MAX, UINT_MAX, 15258, 78965, &a));
-	// printf("\n");
-	// printf("\ncount :  %d",   printf("%% hello %c %s %d %i %u %X %x %p", 'A', "SOUFYANE", INT_MIN, INT_MAX,  UINT_MAX, 15258, 78965, &a));
+	int	a;
+	int	b;
+	a = ft_printf("%1s", "");
+	b = printf("%1s", "");
+	printf ("%d\n%d\n", a, b);
+	printf("\n");
 
-	ft_printf("%-5d test\n", 6);
-	printf("%-5d test\n", 6);
+
+	
 }

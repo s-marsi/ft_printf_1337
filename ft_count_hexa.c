@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_count_hexa.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 19:55:30 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/16 12:37:18 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/30 18:24:18 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/01 23:12:31 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	count_hexa(unsigned long n, char x)
 {
-	char	*str;
-	int		len;
+	int		count_return;
+	char	*base;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = malloc(len * sizeof(char));
-	if (!str)
-		return (str);
-	str[0] = '\0';
-	ft_strlcat(str, s1, ft_strlen(s1) + 1);
-	ft_strlcat(str, s2, len);
-	return (str);
+	base = "0123456789abcdef";
+	if (x == 'X')
+		base = "0123456789ABCDEF";
+	count_return = 0;
+	if (n < 16)
+		count_return += 1;
+	else
+	{
+		count_return += count_hexa(n / 16, x);
+		count_return += 1;
+	}
+	return (count_return);
 }

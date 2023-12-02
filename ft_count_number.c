@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_count_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 11:23:11 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/16 12:37:54 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/30 17:34:29 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/30 18:26:50 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+long	calcule_number(long n)
 {
-	char	*str;
-	int		i;
+	long	count;
 
-	if (!s || !f)
-		return (NULL);
-	str = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	count = 1;
+	if (n < 0)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		n = -n;
+		count++;
 	}
-	return (str);
+	while (n / 10 > 0)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
 }
