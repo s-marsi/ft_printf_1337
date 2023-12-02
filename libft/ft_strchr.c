@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: smarsi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:10:19 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 17:46:16 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/01 18:35:58 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/02 11:01:24 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
-{ 
-	return (write(1, &c, 1));
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && *s != (char) c)
+		s++;
+	if (*s == (char) c)
+		return ((char *) s);
+	return (NULL);
 }

@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_margin.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/29 18:17:00 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/29 20:25:50 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_margin(const char *str, int *margin)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	int	i;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	i = 0;
+	if (ft_isdigit(str[i]))
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		*margin = ft_atoi(str + i);
+		while (ft_isdigit(str[i]))
+			i++;
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (i);
 }

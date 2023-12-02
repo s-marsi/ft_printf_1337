@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/02 18:20:59 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/02 18:54:34 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
-
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	if (n == 0)
+		return (0);
+	while ((*s1 && *s2) && n-- > 1 && *s1 == *s2)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		s1++;
+		s2++;
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

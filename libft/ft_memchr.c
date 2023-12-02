@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/06 10:17:29 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/16 12:35:50 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	unsigned char	*dest;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
+	dest = (unsigned char *)s;
+	if (n > 0)
 	{
-		count_return += ft_putchar('-');
-		nb = -nb;
+		while (*dest != (unsigned char )c && --n)
+			dest++;
+		if (*dest == (unsigned char )c)
+			return ((void *)dest);
 	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	return (NULL);
 }

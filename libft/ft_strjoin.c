@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 11:17:23 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 18:02:30 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/08 19:55:30 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/16 12:37:18 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putnbr(int n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	long	nb;
-	long	divider;
-	int		count_return;
+	char	*str;
+	int		len;
 
-	count_return = 0;
-	nb = n;
-	if (nb < 0)
-	{
-		count_return += ft_putchar('-');
-		nb = -nb;
-	}
-	divider = 1;
-	while (nb / divider >= 10)
-		divider *= 10;
-	while (divider > 0)
-	{
-		n = (nb / divider) + '0';
-		count_return += ft_putchar(n);
-		nb = nb % divider;
-		divider /= 10;
-	}
-	return (count_return);
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(len * sizeof(char));
+	if (!str)
+		return (str);
+	str[0] = '\0';
+	ft_strlcat(str, s1, ft_strlen(s1) + 1);
+	ft_strlcat(str, s2, len);
+	return (str);
 }
