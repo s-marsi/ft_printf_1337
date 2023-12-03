@@ -6,13 +6,13 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:10:19 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 17:46:16 by smarsi           ###   ########.fr       */
+/*   Updated: 2023/11/30 16:05:54 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 int	ft_putchar(char c)
-{ 
+{
 	return (write(1, &c, 1));
 }

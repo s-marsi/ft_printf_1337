@@ -8,23 +8,24 @@ NAME = libftprintf.a
 LIBFT = libft/libft.a
 
 FILES = ft_printf.c  ft_putchar.c  ft_putstr.c \
-		ft_putnbr.c ft_putnbr_unsigned.c  ft_putnbr_hexa.c ft_margin.c
+		ft_putnbr.c ft_putnbr_unsigned.c  ft_putnbr_hexa.c \
+		ft_atoi.c ft_isdigit.c ft_strlen.c ft_count_number.c \
+		ft_itoa.c ft_count_hexa.c ft_find_flags.c ft_minus.c ft_zero.c \
+		ft_dot.c ft_sharp.c ft_space.c ft_plus.c
 
 FILES_O = $(FILES:.c=.o)
-XX=libft/*.o
 
-all :$(LIBFT) $(NAME) 
-$(LIBFT):
-	make all  -C ./libft
+all : $(NAME) 
+
 $(NAME) : $(FILES_O) 
-	$(AR) $(NAME) $(XX)  $(FILES_O) 
+	$(AR) $(NAME)  $(FILES_O) 
+
+bonus : all
 
 clean : 
 	rm -f $(FILES_O)
-	make clean -C ./libft
 
 fclean : clean 
 	rm -f $(NAME)
-	make fclean -C ./libft
 
 re : fclean all 

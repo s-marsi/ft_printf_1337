@@ -5,80 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 10:28:13 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 20:33:43 by smarsi           ###   ########.fr       */
+/*   Created: 2023/12/02 12:41:18 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/03 21:26:37 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-
-int	static	check_arg(const char *str, va_list ap)
+void	fill_str(const char *src, t_list *l)
 {
-	int		count;
-	int		i;
-	char	c;
-
-	i = 0;
-	count = 0;
-	if (str[i] == 'c')
+	l->counter = 0;
+	l->index = 0;
+	while (src[l->index])
 	{
-		c = va_arg(ap, int);
-		count += write(1, &c, 1);
-	}
-	else if (str[i] == 's')
-		count += ft_putstr(va_arg(ap, char *));
-	else if (str[i] == 'd' || str[i] == 'i')
-		count += ft_putnbr(va_arg(ap, int));
-	else if (str[i] == 'u')
-		count += ft_putnbr_unsigned(va_arg(ap, unsigned int));
-	else if (str[i] == 'x' || str[i] == 'X')
-		count += ft_putnbr_hexa(va_arg(ap, unsigned int), str[i]);
-	else if (str[i] == 'p')
-	{
-		count += ft_putstr("0x");
-		count += ft_putnbr_hexa((unsigned long) va_arg(ap, void *), 'm');
-	}
-	return (count);
-}
-
-int	ft_printf(const char *str, ...)
-{
-	va_list	ap;
-	int		i;
-	int		count_return;	
-	int		margin;
-	
-	i = 0;
-	margin = 0;
-	count_return = 0;
-	va_start(ap, str);
-	while (str[i])
-	{
-		if (str[i] == '%' && (str[i + 1] == '%'))
-			count_return += write(1, str + ++i, 1);
-		else if (str[i] == '%')
+		if (src[l->index] == '%')
 		{
-			i++;
-			if (str[i] == '-')
-			{
-				i++;
-				i += ft_margin(str + i, &margin);
-			}
-			count_return += check_arg(str + i++, ap);
+			l->index++;
+			find_flags(src, l);
 		}
 		else
-		{
-			count_return += write(1, str + i, 1);
-		}
-		while (margin)
-		{
-			count_return += write(1, " ", 1);
-			margin--;
-		}
-		i++;
+			l->counter += ft_putchar(src[l->index]);
+		l->index++;
+		l->is_dot = 0;
 	}
-	va_end(ap);
-	return (count_return);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	t_list	l;
+
+	l.is_minus = 0;
+	l.is_dot = 0;
+	va_start(l.ap, format);
+	fill_str(format, &l);
+	va_end(l.ap);
+	return (l.counter);
 }

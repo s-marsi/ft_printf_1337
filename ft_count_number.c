@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_margin.c                                        :+:      :+:    :+:   */
+/*   ft_count_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 18:17:00 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/29 20:25:50 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/30 17:34:29 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/30 18:26:50 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_margin(const char *str, int *margin)
+long	calcule_number(long n)
 {
-	int	i;
+	long	count;
 
-	i = 0;
-	if (ft_isdigit(str[i]))
+	count = 1;
+	if (n < 0)
 	{
-		*margin = ft_atoi(str + i);
-		while (ft_isdigit(str[i]))
-			i++;
+		n = -n;
+		count++;
 	}
-	return (i);
+	while (n / 10 > 0)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
 }

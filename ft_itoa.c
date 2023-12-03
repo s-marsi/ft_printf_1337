@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 18:33:24 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/16 20:43:35 by smarsi           ###   ########.fr       */
+/*   Created: 2023/11/30 18:02:33 by smarsi            #+#    #+#             */
+/*   Updated: 2023/11/30 18:23:28 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static	long	calcule_number(long n)
+static	long	count_number(long n)
 {
 	long	count;
 
@@ -25,7 +25,7 @@ static	long	calcule_number(long n)
 	return (count);
 }
 
-static	char	*to_string(char *str, long nb, int n, long len)
+static	const char	*to_string(char *str, long nb, int n, unsigned long len)
 {
 	int	divided;
 
@@ -39,26 +39,19 @@ static	char	*to_string(char *str, long nb, int n, long len)
 		str[len] = (nb % divided) + '0';
 		nb /= 10;
 	}
-	return (str);
+	return ((const char *)str);
 }
 
-char	*ft_itoa(int n)
+const char	*ft_itoa(unsigned long n)
 {
-	long	nb;
-	long	count;
-	char	*str;
+	unsigned long	count;
+	char			*str;
 
 	count = 0;
-	nb = n;
-	if (nb < 0)
-	{
-		count = calcule_number(-nb) + 1;
-		nb = -nb;
-	}
-	else
-		count = calcule_number(nb);
-	str = ft_calloc(count + 1, sizeof(char));
+	count = count_number(n);
+	str = malloc(count + 1 * sizeof(char));
+	str[n] = '\0';
 	if (!str)
 		return (NULL);
-	return (to_string(str, nb, n, count));
+	return (to_string(str, n, n, count));
 }

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_plus.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 10:34:08 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/07 16:21:31 by smarsi           ###   ########.fr       */
+/*   Created: 2023/12/03 18:55:35 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/03 18:55:47 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_plus(const char *format, t_list *l, va_list ap2)
 {
-	if (!dst && !src)
-		return (NULL);
-	if (dst < src)
-		ft_memcpy(dst, src, len);
-	else
-		while (len--)
-			*((unsigned char *)dst + len) = *((unsigned char *)src + len);
-	return (dst);
+	int	nb;
+
+	l->index++;
+	if (format[l->index] == 'd' || format[l->index] == 'i')
+	{
+		nb = va_arg(ap2, int);
+		if (nb >= 0)
+			l->counter += ft_putchar('+');
+	}
 }
