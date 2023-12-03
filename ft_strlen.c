@@ -6,7 +6,7 @@
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:08:54 by smarsi            #+#    #+#             */
-/*   Updated: 2023/11/30 17:10:04 by smarsi           ###   ########.fr       */
+/*   Updated: 2023/12/03 19:54:44 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strlen(const char *s)
 {
 	int	len;
 
+	if (!s)
+		return (6);
 	len = 0;
 	while (*(s++))
 		len++;

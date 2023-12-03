@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hexa.c                                   :+:      :+:    :+:   */
+/*   ft_sharp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 12:35:58 by smarsi            #+#    #+#             */
-/*   Updated: 2023/12/03 21:00:04 by smarsi           ###   ########.fr       */
+/*   Created: 2023/12/02 23:31:35 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/02 23:40:35 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_hexa(unsigned long n, char x)
+void	ft_sharp(const char *format, t_list *l, va_list ap2)
 {
-	int		count_return;
-	char	*base;
+	unsigned int	nb;
 
-	base = "0123456789abcdef";
-	if (x == 'X')
-		base = "0123456789ABCDEF";
-	count_return = 0;
-	if (n < 16)
-		count_return += ft_putchar(base[n % 16]);
-	else
-	{
-		count_return += ft_putnbr_hexa(n / 16, x);
-		count_return += ft_putchar(base[n % 16]);
-	}
-	return (count_return);
+	l->index++;
+	nb = va_arg(ap2, unsigned int);
+	if (nb != 0 && format[l->index] == 'x')
+		l->counter += ft_putstr("0x");
+	if (nb != 0 && format[l->index] == 'X')
+		l->counter += ft_putstr("0X");
 }

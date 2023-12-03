@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_plus.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 12:41:18 by smarsi            #+#    #+#             */
-/*   Updated: 2023/12/03 21:26:37 by smarsi           ###   ########.fr       */
+/*   Created: 2023/12/03 18:55:35 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/03 18:55:47 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_str(const char *src, t_list *l)
+void	ft_plus(const char *format, t_list *l, va_list ap2)
 {
-	l->counter = 0;
-	l->index = 0;
-	while (src[l->index])
+	int	nb;
+
+	l->index++;
+	if (format[l->index] == 'd' || format[l->index] == 'i')
 	{
-		if (src[l->index] == '%')
-		{
-			l->index++;
-			find_flags(src, l);
-		}
-		else
-			l->counter += ft_putchar(src[l->index]);
-		l->index++;
-		l->is_dot = 0;
+		nb = va_arg(ap2, int);
+		if (nb >= 0)
+			l->counter += ft_putchar('+');
 	}
-}
-
-int	ft_printf(const char *format, ...)
-{
-	t_list	l;
-
-	l.is_minus = 0;
-	l.is_dot = 0;
-	va_start(l.ap, format);
-	fill_str(format, &l);
-	va_end(l.ap);
-	return (l.counter);
 }

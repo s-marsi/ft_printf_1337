@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smarsi <smarsi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 10:28:32 by smarsi            #+#    #+#             */
-/*   Updated: 2023/12/01 19:15:15 by smarsi           ###   ########.fr       */
+/*   Created: 2023/12/02 12:39:32 by smarsi            #+#    #+#             */
+/*   Updated: 2023/12/03 18:56:04 by smarsi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@
 
 typedef struct s_list
 {
-	va_list	ap2;
+	va_list	ap;
 	int		margin;
-	int		counter;
 	int		index;
+	int		counter;
+	int		zero;
+	int		is_minus;
+	int		is_dot;
 }	t_list;
+typedef unsigned long	t_long;
+typedef unsigned int	t_int;
 int			ft_printf(const char *format, ...);
 int			ft_putstr(char *s);
 int			ft_putchar(char c);
@@ -40,6 +45,12 @@ long		calcule_number(long n);
 const char	*ft_itoa(unsigned long n);
 void		*ft_calloc(size_t count, size_t size);
 int			count_hexa(unsigned long n, char x);
-int			find_flags(const char *format, t_list *list, va_list ap);
+void		find_flags(const char *format, t_list *list);
+void		ft_minus(const char *format, t_list *l, va_list ap2);
+void		ft_zero(const char *format, t_list *l, va_list ap2);
+void		ft_dot(const char *format, t_list *l, va_list ap2);
+void		ft_sharp(const char *format, t_list *l, va_list ap2);
+void		ft_space(const char *format, t_list *l, va_list ap2);
+void		ft_plus(const char *format, t_list *l, va_list ap2);
 
 #endif
