@@ -1,4 +1,4 @@
-# <span style="font-size: 50px;font-weight: 600; color: red;margin-left: 42%;"> LIB</span> <span style="font-size: 50px;font-weight: 600">FT</span>
+# <span style="font-size: 50px;font-weight: 600; color: red;margin-left: 42%;"> PRINTF</span>
 
 ## Table of Contents
 - [Subject](#subject)
@@ -11,28 +11,27 @@
 ## Subject :
 <ol style="margin-left: 15px;">
   <li style="font-size: 20px; font-weight: 600; color: red;">
-     <a href="https://cdn.intra.42.fr/pdf/pdf/111289/en.subject.pdf" target="_blank" style="color: red; font-size: 15.5px; font-weight: 300; margin-left: 10px;"> subject.pdf </a>
+     <a href="https://cdn.intra.42.fr/pdf/pdf/106616/en.subject.pdf" target="_blank" style="color: red; font-size: 15.5px; font-weight: 300; margin-left: 10px;"> subject.pdf </a>
   </li>
 </ol>
 
 ## Description :
-- The libft project is a custom C library containing a collection of essential functions that can be utilized in various C programming tasks. This library serves as a reusable set of functions,      
-providing common functionality not necessarily present in the standard C library.
+- Welcome to my printf project! This GitHub repository features my custom printf function in C, designed for easy formatting and printing of various data types. Dive into the code to explore format specifiers like %d, %s, %c, and more.
     
 
 ## Getting Started
 ### Prerequisites
-- To use this library, you need a C compiler (e.g., GCC) and the make utility installed on your system.
+- To use this project, you need a C compiler (e.g., GCC) and the make utility installed on your system.
 
 ### Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/s-marsi/libft.git libft
-    cd libft
+    git clone https://github.com/s-marsi/ft_printf.git ft_printf.c
+    cd ft_printf.c
     ```
 2. Compile the library:
     ```bash
-    make all bonus  # This will generate the libft.a library file.
+    make all  # This will generate the libftprintf.a library file.
     make clean      # This will remove object files.
     ```
 
@@ -40,11 +39,11 @@ providing common functionality not necessarily present in the standard C library
   <li style="font-size: 20px; font-weight: 600;">
     Usage :
     <ul>
-      <li>To use the libft library in your C project, include the header file in your source code and link against the compiled library.</li>
-      <li>#include "libft.h"</li>
-      <li>Compile your program with the libft.a library:</li>
+      <li>To use the libftprint library in your C project, include the header file in your source code and link against the compiled library.</li>
+      <li>#include "ft_printf.h"</li>
+      <li>Compile your program with the libftprint.a library:</li>
       <li>```bash
-        cc main.c libft.a
+        cc main.c libftprint.a.a
         ```</li>
     </ul>
   </li>
