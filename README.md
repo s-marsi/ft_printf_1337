@@ -36,7 +36,7 @@
 ## Usage :
 - To use the libftprintf library in your C project, include the header file in your source code and link against the compiled library.</li>
   ```bash
-  #include "ft_printf.h"</li>
+  #include "ft_printf.h"
    ```
 - Compile your program with the libft.a library:
   ```bash
