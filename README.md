@@ -42,9 +42,11 @@
       <li>To use the libftprint library in your C project, include the header file in your source code and link against the compiled library.</li>
       <li>#include "ft_printf.h"</li>
       <li>Compile your program with the libftprint.a library:</li>
-      <li>```bash
+      <li>
+          ```bash
         cc main.c libftprint.a.a
-        ```</li>
+        ```
+      </li>
     </ul>
   </li>
 </ol>
