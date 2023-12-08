@@ -43,8 +43,8 @@
       <li>#include "ft_printf.h"</li>
       <li>Compile your program with the libftprint.a library:</li>
       <li>
-          ```bash
-        cc main.c libftprint.a.a
+        ```bash
+        cc main.c libftprint.a
         ```
       </li>
     </ul>
