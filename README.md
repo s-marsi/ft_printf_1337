@@ -43,9 +43,9 @@
       <li>#include "ft_printf.h"</li>
       <li>Compile your program with the libftprint.a library:</li>
       <li>
-        <code>
+        ```bash
           cc main.c libftprint.a
-        </code>
+        ```
       </li>
     </ul>
   </li>
